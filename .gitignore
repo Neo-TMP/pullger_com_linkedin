@@ -1,2 +1,5 @@
 /venv/
 /.idea/
+/src/djTaskBrockerFrontendAdmin/node_modules/
+/src/djPullgerReflection/com_linkedin/migrations/
+/src/djTaskBrocker/migrations/

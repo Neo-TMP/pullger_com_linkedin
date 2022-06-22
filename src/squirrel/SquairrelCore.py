@@ -11,6 +11,8 @@ class Squirrel:
         self.type = inType
 
     def initialize(self):
+        result = None
+
         if self.genus == 'selenium':
             import undetected_chromedriver.v2 as uc
             from selenium.webdriver.common.keys import Keys
@@ -34,9 +36,13 @@ class Squirrel:
                 self.driver = uc.Chrome(options=chrome_options)
                 self.Keys = Keys
                 self.By = By
+                result = True
             except Exception as Err:
                 print("ERROR ERROR ERROR")
-                #raise CriticalErrorInitialization(Err)
+                print(Err)
+                result = False
+
+        return result
 
     def get(self, inURL = None, **kwargs):
         result = None

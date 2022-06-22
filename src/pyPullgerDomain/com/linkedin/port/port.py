@@ -1,7 +1,3 @@
-import sys
-sys.path.insert(0, '/home/vector/PromoteProjects/SoftIndustri/src/')
-
-# from pyPullgerFootPrint.com.linkedin import authorization as linkedinAuthorizationFootPrint
 from squirrel import SquairrelCore
 from pyPullgerFootPrint.com.linkedin import authorization as linkedinAuthorizationFootPrint
 from pyPullgerFootPrint.com.linkedin.search import people as linkedinSearchPeopleFootPrint
@@ -9,19 +5,24 @@ from pyPullgerFootPrint.com.linkedin.people import card as linkedinPeopleCardFoo
 import time
 
 class Domain:
-    #languageWeb = None;
-    #driver = None;
     authorizated = None
     squirrel = None
+    squirrel_initialized = None
     RootLoaded = None
     
     def __init__(self):
         self.squirrel = SquairrelCore.Squirrel('selenium')
-        self.squirrel.initialize()
+        self.squirrel_initialized = self.squirrel.initialize()
 
     def connect(self):
-        self.squirrel.get('https://www.linkedin.com/')
-        self.RootLoaded = True
+        result = None
+
+        if self.squirrel_initialized != None:
+            result = self.squirrel.get('https://www.linkedin.com/')
+
+        self.RootLoaded = result
+
+        return result
 
     def authorization(self, inUserName, inPassword):
         if self.RootLoaded != True:

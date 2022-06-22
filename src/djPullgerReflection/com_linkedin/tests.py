@@ -1,10 +1,6 @@
 from djPullgerReflection.com_linkedin import metods
 
 def test1():
-    import sys
-
-    sys.path.insert(0, '/home/vector/PromoteProjects/SoftIndustri/src/')
-
     from pyPullgerDomain.com.linkedin import port as linkedinPORT
     import time
 
@@ -71,10 +67,6 @@ people.getNumberCurentPaginationPage(dl.squirrel)
 
 
 def test2():
-    import sys
-
-    sys.path.insert(0, '/home/vector/PromoteProjects/SoftIndustri/src/')
-
     from pyPullgerDomain.com.linkedin import port as linkedinPORT
     import time
 
@@ -147,26 +139,26 @@ def bc():
 
 def colectCompanies():
     from djPullgerReflection.com_linkedin.models import companies
-
-    # authorization = {
-    #     'user' : 'kkovalenko.sphere@outlook.com',
-    #     'password' : 'bebb90cbf2'
-    # }
+    import time
 
     i = 1
     limit = 10
 
     from pyPullgerDomain.com.linkedin import port as linkedinPORT
     rootDomain = linkedinPORT.Domain();
-    rootDomain.authorization('kkovalenko.sphere@outlook.com', 'bebb90cbf2')
+    statusAUTH = rootDomain.authorization('kkovalenko.sphere@outlook.com', 'bebb90cbf2')
 
-    listCompanies = companies.objects.getList(date_full_loaded__lte = None)
-    for curCompny in listCompanies:
-        curCompny.domainConnection(root = rootDomain)
-        curCompny.updateDATA()
-        if i >= limit:
-            break
-        i += 1
+    if statusAUTH:
+        listCompanies = companies.objects.getList(date_full_loaded__lte = None)
+        for curCompny in listCompanies:
+            curCompny.domainConnection(root = rootDomain)
+            curCompny.updateDATA()
+            if i >= limit:
+                break
+            else:
+                time.sleep(5)
+            i += 1
+
 
 '''
 from djPullgerReflection.com_linkedin import tests

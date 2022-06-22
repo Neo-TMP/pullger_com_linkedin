@@ -3,3 +3,5 @@
 /src/djTaskBrockerFrontendAdmin/node_modules/
 /src/djPullgerReflection/com_linkedin/migrations/
 /src/djTaskBrocker/migrations/
+/PullgerCore/settings_databases.py
+/PullgerCore/settings_secret_key.py
